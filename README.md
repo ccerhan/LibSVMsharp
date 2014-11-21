@@ -2,7 +2,7 @@ LibSVMsharp
 ===========
 
 LibSVMsharp is a simple and easy-to-use C# wrapper for Support Vector Machines. 
-It uses the latest LibSVM version 3.18 which released on 1st of April in 2014.
+It uses the latest LibSVM version 3.20 which released on 15th of November in 2014.
 
 LibSVM : http://www.csie.ntu.edu.tw/~cjlin/libsvm/
 
