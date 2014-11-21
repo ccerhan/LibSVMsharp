@@ -1,13 +1,17 @@
-LibSVMsharp
-===========
+##LibSVMsharp
 
 LibSVMsharp is a simple and easy-to-use C# wrapper for Support Vector Machines. 
 It uses the latest LibSVM version 3.20 which released on 15th of November in 2014.
 
-LibSVM : http://www.csie.ntu.edu.tw/~cjlin/libsvm/
+For more information visit the official [libsvm](http://www.csie.ntu.edu.tw/~cjlin/libsvm/) webpage.
 
-Simplest Example Code
-===========
+##How to Install
+
+To install LibSVMsharp, download the [Nuget package](https://www.nuget.org/packages/LibSVMsharp/1.0.0) or run the following command in the Package Manager Console:
+
+`PM> Install-Package LibSVMsharp`
+
+##Simplest Example Code
 
 ```C#
 SVMProblem problem = SVMProblemHelper.Load(@"dataset_path.txt");
@@ -28,3 +32,10 @@ for (int i = 0; i < problem.Length; i++)
     correct++;
 }
 ```
+##Versioning
+[Semantic Versioning](http://semver.org) is used in this project.
+
+`<major>.<minor>.<patch>`
+
+##License
+LibSVMsharp is released under the MIT License and libsvm is released under the [modified BSD Lisence](http://www.csie.ntu.edu.tw/~cjlin/libsvm/faq.html#f204) which is compatible with many free software licenses such as GPL.
