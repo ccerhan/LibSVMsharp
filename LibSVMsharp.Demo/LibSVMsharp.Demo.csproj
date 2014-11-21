@@ -54,10 +54,10 @@
     <Content Include="Datasets\mushrooms.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="libsvm.dll">
+    <Content Include="Datasets\wine.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Datasets\wine.txt">
+    <Content Include="libsvm.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
