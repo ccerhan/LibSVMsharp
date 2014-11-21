@@ -25,11 +25,8 @@ namespace LibSVMsharp
 
         public bool Equals(SVMNode x)
         {
-            if (x == null)
-            {
-                return false;
-            }
-            return Index == x.Index && Value == x.Value;
+            if (x == null) return false;
+            return Index.Equals(x.Index) && Value.Equals(x.Value);
         }
         public override int GetHashCode()
         {
@@ -92,10 +89,6 @@ namespace LibSVMsharp
             Marshal.DestroyStructure(ptr, typeof(IntPtr));
             Marshal.FreeHGlobal(ptr);
             ptr = IntPtr.Zero;
-        }
-        public static int Size()
-        {
-            return Marshal.SizeOf(typeof(svm_node));
         }
     }
 }

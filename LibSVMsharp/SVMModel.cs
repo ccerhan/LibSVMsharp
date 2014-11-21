@@ -370,9 +370,5 @@ namespace LibSVMsharp
             Marshal.FreeHGlobal(ptr);
             ptr = IntPtr.Zero;
         }
-        public static int Size()
-        {
-            return Marshal.SizeOf(typeof(svm_model));
-        }
     }
 }

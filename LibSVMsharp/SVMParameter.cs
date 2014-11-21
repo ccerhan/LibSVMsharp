@@ -113,6 +113,7 @@ namespace LibSVMsharp
             y.Weights = Weights.Select(a => a).ToArray();
             return y;
         }
+
         public static SVMParameter Convert(svm_parameter x)
         {
             SVMParameter y = new SVMParameter();
@@ -208,10 +209,6 @@ namespace LibSVMsharp
             Marshal.DestroyStructure(ptr, typeof(svm_parameter));
             Marshal.FreeHGlobal(ptr);
             ptr = IntPtr.Zero;
-        }
-        public static int Size()
-        {
-            return Marshal.SizeOf(typeof(svm_parameter));
         }
     }
 }

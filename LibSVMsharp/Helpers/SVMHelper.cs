@@ -15,6 +15,11 @@ namespace LibSVMsharp.Helpers
         /// <returns>Accuracy for C_SVC, NU_SVC and ONE_CLASS.</returns>
         public static double EvaluateClassificationProblem(SVMProblem testset, double[] target)
         {
+            if (testset.Length != target.Length)
+            {
+                return -1;
+            }
+
             int total_correct = 0;
             for (int i = 0; i < testset.Length; i++)
             {
@@ -39,6 +44,12 @@ namespace LibSVMsharp.Helpers
         /// <returns>Accuracy for C_SVC, NU_SVC and ONE_CLASS.</returns>
         public static double EvaluateClassificationProblem(SVMProblem testset, double[] target, int[] labels, out int[,] confusionMatrix)
         {
+            if (testset.Length != target.Length)
+            {
+                confusionMatrix = null;
+                return -1;
+            }
+
             Dictionary<int, int> indexes = new Dictionary<int, int>();
             for (int i = 0; i < labels.Length; i++)
             {

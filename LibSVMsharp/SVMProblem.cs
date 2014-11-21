@@ -28,12 +28,21 @@ namespace LibSVMsharp
                 Y.Add(y);
             }
         }
-        public void RemoveAt(int i)
+        public void RemoveAt(int index)
         {
-            if (i < Length)
+            if (index < Length)
             {
-                Y.RemoveAt(i);
-                X.RemoveAt(i);
+                Y.RemoveAt(index);
+                X.RemoveAt(index);
+            }
+        }
+        public void Insert(int index, SVMNode[] x, double y)
+        {
+            if (x.Length > 0)
+            {
+                SVMNode[] nodes = x.OrderBy(a => a.Index).ToArray();
+                X.Insert(index, x);
+                Y.Insert(index, y);
             }
         }
         public SVMProblem Clone()
@@ -147,10 +156,6 @@ namespace LibSVMsharp
             Marshal.DestroyStructure(ptr, typeof(svm_problem));
             Marshal.FreeHGlobal(ptr);
             ptr = IntPtr.Zero;
-        }
-        public static int Size()
-        {
-            return Marshal.SizeOf(typeof(svm_problem));
         }
     }
 }
