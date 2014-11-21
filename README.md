@@ -7,7 +7,7 @@ For more information visit the official [libsvm](http://www.csie.ntu.edu.tw/~cjl
 
 ##How to Install
 
-To install LibSVMsharp, download the [Nuget package](https://www.nuget.org/packages/LibSVMsharp/1.0.0) or run the following command in the Package Manager Console:
+To install LibSVMsharp, download the [Nuget package](https://www.nuget.org/packages/LibSVMsharp) or run the following command in the Package Manager Console:
 
 `PM> Install-Package LibSVMsharp`
 
