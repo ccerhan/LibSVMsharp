@@ -22,7 +22,7 @@ namespace LibSVMsharp
             CacheSize = 100;
             Eps = 0.001;
             Shrinking = true;
-            Probability = true;
+            Probability = false;
             WeightLabels = new int[0];
             Weights = new double[0];
         } 
@@ -113,7 +113,6 @@ namespace LibSVMsharp
             y.Weights = Weights.Select(a => a).ToArray();
             return y;
         }
-
         public static SVMParameter Convert(svm_parameter x)
         {
             SVMParameter y = new SVMParameter();
