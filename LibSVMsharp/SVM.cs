@@ -283,14 +283,13 @@ namespace LibSVMsharp
         /// <param name="function"></param>
         public static void SetPrintStringFunction(SVMPrintFunction function)
         {
-            // Not working
+            throw new NotImplementedException("There is an issue about this method in the github page of this library. Please visit 'https://github.com/ccerhan/LibSVMsharp/issues/1' and solve the issue and send a pull request.");
 
             IntPtr ptr_function = Marshal.GetFunctionPointerForDelegate(function);
-
             libsvm.svm_set_print_string_function(ptr_function);
 
-            Marshal.FreeHGlobal(ptr_function);
-            ptr_function = IntPtr.Zero;
+            //Marshal.FreeHGlobal(ptr_function);
+            //ptr_function = IntPtr.Zero;
         }
     }
 }
