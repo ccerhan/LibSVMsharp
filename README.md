@@ -32,10 +32,6 @@ for (int i = 0; i < problem.Length; i++)
     correct++;
 }
 ```
-##Versioning
-[Semantic Versioning](http://semver.org) is used in this project.
-
-`<major>.<minor>.<patch>`
 
 ##License
 LibSVMsharp is released under the MIT License and libsvm is released under the [modified BSD Lisence](http://www.csie.ntu.edu.tw/~cjlin/libsvm/faq.html#f204) which is compatible with many free software licenses such as GPL.
