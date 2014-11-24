@@ -49,5 +49,9 @@ namespace LibSVMsharp.Extensions
         {
             return SVM.Train(problem, parameter);
         }
+        public static double[] Predict(this SVMProblem problem, SVMModel model)
+        {
+            return problem.X.Select(x => x.Predict(model)).ToArray();
+        }
     }
 }

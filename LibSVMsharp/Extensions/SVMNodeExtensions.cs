@@ -13,5 +13,9 @@ namespace LibSVMsharp.Extensions
         {
             return SVMNodeHelper.Normalize(x, type);
         }
+        public static double Predict(this SVMNode[] x, SVMModel model)
+        {
+            return SVM.Predict(model, x);
+        }
     }
 }
