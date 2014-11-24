@@ -51,7 +51,46 @@ namespace LibSVMsharp.Extensions
         }
         public static double[] Predict(this SVMProblem problem, SVMModel model)
         {
-            return problem.X.Select(x => x.Predict(model)).ToArray();
+            IntPtr ptr_model = SVMModel.Allocate(model);
+            double[] target = problem.X.Select(x => x.Predict(ptr_model)).ToArray();
+            SVMModel.Free(ptr_model);
+            return target;
+        }
+        public static double[] PredictProbability(this SVMProblem problem, SVMModel model, out List<double[]> estimationsList)
+        {
+            IntPtr ptr_model = SVMModel.Allocate(model);
+
+            List<double[]> temp = new List<double[]>();
+            double[] target = problem.X.Select(x =>
+            {
+                double[] estimations;
+                double y = x.PredictProbability(ptr_model, out estimations);
+                temp.Add(estimations);
+                return y;
+            }).ToArray();
+
+            SVMModel.Free(ptr_model);
+
+            estimationsList = temp;
+            return target;
+        }
+        public static double[] PredictValues(this SVMProblem problem, SVMModel model, out List<double[]> valuesList)
+        {
+            IntPtr ptr_model = SVMModel.Allocate(model);
+
+            List<double[]> temp = new List<double[]>();
+            double[] target = problem.X.Select(x =>
+            {
+                double[] estimations;
+                double y = x.PredictProbability(ptr_model, out estimations);
+                temp.Add(estimations);
+                return y;
+            }).ToArray();
+
+            SVMModel.Free(ptr_model);
+
+            valuesList = temp;
+            return target;
         }
     }
 }

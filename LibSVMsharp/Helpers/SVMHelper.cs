@@ -79,9 +79,9 @@ namespace LibSVMsharp.Helpers
         /// </summary>
         /// <param name="testset"></param>
         /// <param name="target"></param>
-        /// <param name="correlation_coef">Squared correlation coefficient for EPSILON_SVR and NU_SVR.</param>
+        /// <param name="correlationCoeff">Squared correlation coefficient for EPSILON_SVR and NU_SVR.</param>
         /// <returns>Mean squared error for EPSILON_SVR and NU_SVR.</returns>
-        public static double EvaluateRegressionProblem(SVMProblem testset, double[] target, out double correlation_coef)
+        public static double EvaluateRegressionProblem(SVMProblem testset, double[] target, out double correlationCoeff)
         {
             double total_error = 0;
             double sumv = 0, sumy = 0, sumvv = 0, sumyy = 0, sumvy = 0;
@@ -98,7 +98,7 @@ namespace LibSVMsharp.Helpers
             }
 
             double mean_squared_error = total_error / (double)testset.Length;
-            correlation_coef =
+            correlationCoeff =
                 (((double)testset.Length * sumvy - sumv * sumy) * ((double)testset.Length * sumvy - sumv * sumy)) /
                 (((double)testset.Length * sumvv - sumv * sumv) * ((double)testset.Length * sumyy - sumy * sumy));
 

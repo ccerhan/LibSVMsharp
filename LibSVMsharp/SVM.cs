@@ -167,9 +167,27 @@ namespace LibSVMsharp
         /// <returns></returns>
         public static double PredictValues(SVMModel model, SVMNode[] x, out double[] values)
         {
-            int size = (int)(model.ClassCount * (model.ClassCount - 1) * 0.5);
-            IntPtr ptr_values = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(double)) * size);
             IntPtr ptr_model = SVMModel.Allocate(model);
+            double result = PredictValues(ptr_model, x, out values);
+            SVMModel.Free(ptr_model);
+            return result;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ptr_model"></param>
+        /// <param name="x"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public static double PredictValues(IntPtr ptr_model, SVMNode[] x, out double[] values)
+        {
+            if (ptr_model == IntPtr.Zero)
+                throw new ArgumentNullException("ptr_model");
+
+            int classCount = libsvm.svm_get_nr_class(ptr_model);
+            int size = (int)(classCount * (classCount - 1) * 0.5);
+            IntPtr ptr_values = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(double)) * size);
+
             List<SVMNode> nodes = x.Select(a => a.Clone()).ToList();
             nodes.Add(new SVMNode(-1, 0));
             IntPtr ptr_nodes = SVMNode.Allocate(nodes.ToArray());
@@ -179,7 +197,6 @@ namespace LibSVMsharp
             values = new double[size];
             Marshal.Copy(ptr_values, values, 0, values.Length);
 
-            SVMModel.Free(ptr_model);
             SVMNode.Free(ptr_nodes);
             Marshal.FreeHGlobal(ptr_values);
             ptr_values = IntPtr.Zero;
@@ -197,13 +214,27 @@ namespace LibSVMsharp
         public static double Predict(SVMModel model, SVMNode[] x)
         {
             IntPtr ptr_model = SVMModel.Allocate(model);
+            double result = Predict(ptr_model, x);
+            SVMModel.Free(ptr_model);
+            return result;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ptr_model"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static double Predict(IntPtr ptr_model, SVMNode[] x)
+        {
+            if (ptr_model == IntPtr.Zero)
+                throw new ArgumentNullException("ptr_model");
+
             List<SVMNode> nodes = x.Select(a => a.Clone()).ToList();
             nodes.Add(new SVMNode(-1, 0));
             IntPtr ptr_nodes = SVMNode.Allocate(nodes.ToArray());
 
             double result = libsvm.svm_predict(ptr_model, ptr_nodes);
 
-            SVMModel.Free(ptr_model);
             SVMNode.Free(ptr_nodes);
 
             return result;
@@ -218,6 +249,22 @@ namespace LibSVMsharp
         public static double PredictProbability(SVMModel model, SVMNode[] x, out double[] estimations)
         {
             IntPtr ptr_model = SVMModel.Allocate(model);
+            double result = PredictProbability(ptr_model, x, out estimations);
+            SVMModel.Free(ptr_model);
+            return result;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ptr_model"></param>
+        /// <param name="x"></param>
+        /// <param name="estimations"></param>
+        /// <returns></returns>
+        public static double PredictProbability(IntPtr ptr_model, SVMNode[] x, out double[] estimations)
+        {
+            if (ptr_model == IntPtr.Zero)
+                throw new ArgumentNullException("ptr_model");
+
             bool isProbabilityModel = libsvm.svm_check_probability_model(ptr_model);
             if (!isProbabilityModel)
             {
@@ -226,17 +273,18 @@ namespace LibSVMsharp
                 return -1;
             }
 
-            IntPtr ptr_estimations = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(double)) * model.ClassCount);
+            int classCount = libsvm.svm_get_nr_class(ptr_model);
+
+            IntPtr ptr_estimations = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(double)) * classCount);
             List<SVMNode> nodes = x.Select(a => a.Clone()).ToList();
             nodes.Add(new SVMNode(-1, 0));
             IntPtr ptr_nodes = SVMNode.Allocate(nodes.ToArray());
 
             double result = libsvm.svm_predict_probability(ptr_model, ptr_nodes, ptr_estimations);
 
-            estimations = new double[model.ClassCount];
+            estimations = new double[classCount];
             Marshal.Copy(ptr_estimations, estimations, 0, estimations.Length);
 
-            SVMModel.Free(ptr_model);
             SVMNode.Free(ptr_nodes);
             Marshal.FreeHGlobal(ptr_estimations);
             ptr_estimations = IntPtr.Zero;
