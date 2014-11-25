@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{B7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibSVMsharp.Examples.Classification", "LibSVMsharp.Examples.Classification\LibSVMsharp.Examples.Classification.csproj", "{40F859AD-241A-4379-831C-8FB69BE6A8B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibSVMsharp.Examples.Regression", "LibSVMsharp.Examples.Regression\LibSVMsharp.Examples.Regression.csproj", "{3F977403-B700-458C-AB17-310ED154B803}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibSVMsharp.Examples.RapidPrediction", "LibSVMsharp.Examples.RapidPrediction\LibSVMsharp.Examples.RapidPrediction.csproj", "{FFDF7EA5-53DA-4DF7-9DD8-E4E7DE2B5AB6}"
 EndProject
 Global
@@ -33,10 +31,6 @@ Global
 		{40F859AD-241A-4379-831C-8FB69BE6A8B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40F859AD-241A-4379-831C-8FB69BE6A8B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40F859AD-241A-4379-831C-8FB69BE6A8B1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3F977403-B700-458C-AB17-310ED154B803}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3F977403-B700-458C-AB17-310ED154B803}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3F977403-B700-458C-AB17-310ED154B803}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3F977403-B700-458C-AB17-310ED154B803}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FFDF7EA5-53DA-4DF7-9DD8-E4E7DE2B5AB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FFDF7EA5-53DA-4DF7-9DD8-E4E7DE2B5AB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFDF7EA5-53DA-4DF7-9DD8-E4E7DE2B5AB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -47,7 +41,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{40F859AD-241A-4379-831C-8FB69BE6A8B1} = {B7C949C2-345F-404F-BD38-4F2C0519A5F2}
-		{3F977403-B700-458C-AB17-310ED154B803} = {B7C949C2-345F-404F-BD38-4F2C0519A5F2}
 		{FFDF7EA5-53DA-4DF7-9DD8-E4E7DE2B5AB6} = {B7C949C2-345F-404F-BD38-4F2C0519A5F2}
 	EndGlobalSection
 EndGlobal

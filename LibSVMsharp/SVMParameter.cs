@@ -27,7 +27,6 @@ namespace LibSVMsharp
             Weights = new double[0];
         } 
 
-
         /// <summary>
         /// Type of a SVM formulation. Possible values are: 
         /// [C_SVC] C-Support Vector Classification. n-class classification (n >= 2), allows imperfect separation of classes with penalty multiplier C for outliers. 

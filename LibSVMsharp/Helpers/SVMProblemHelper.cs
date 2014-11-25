@@ -156,7 +156,7 @@ namespace LibSVMsharp.Helpers
 
                     string[] list = line.Trim().Split(' ');
 
-                    double y = Convert.ToDouble(list[0].Trim());
+                    double y = Convert.ToDouble(list[0].Trim(), provider);
 
                     List<SVMNode> nodes = new List<SVMNode>();
                     for (int i = 1; i < list.Length; i++)
