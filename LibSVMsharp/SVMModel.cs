@@ -172,11 +172,14 @@ namespace LibSVMsharp
                 Marshal.Copy(x.probB, y.ProbabilityB, 0, y.ProbabilityB.Length);
             }
 
-            y.SVCounts = new int[y.ClassCount];
-            Marshal.Copy(x.nSV, y.SVCounts, 0, y.SVCounts.Length);
+            if (x.nSV != IntPtr.Zero)
+            {
+                y.SVCounts = new int[y.ClassCount];
+                Marshal.Copy(x.nSV, y.SVCounts, 0, y.SVCounts.Length);
 
-            y.Labels = new int[y.ClassCount];
-            Marshal.Copy(x.label, y.Labels, 0, y.Labels.Length);
+                y.Labels = new int[y.ClassCount];
+                Marshal.Copy(x.label, y.Labels, 0, y.Labels.Length);
+            }
 
             y.SVCoefs = new List<double[]>(y.ClassCount - 1);
             IntPtr i_ptr_svcoef = x.sv_coef;
@@ -217,12 +220,19 @@ namespace LibSVMsharp
         }
         public static IntPtr Allocate(SVMModel x)
         {
-            if (x == null || x.ClassCount < 1 || x.Labels == null || x.Labels.Length < 1 || x.Parameter == null ||
-                x.Rho == null || x.Rho.Length < 1 || x.SVCoefs == null || x.SVCoefs.Count < 1 || x.TotalSVCount < 1 ||
-                x.SVCounts == null || x.SVCounts.Length < 1)
+            if (x == null || x.ClassCount < 1 || x.Parameter == null || x.Rho == null || x.Rho.Length < 1 ||
+                x.SVCoefs == null || x.SVCoefs.Count < 1 || x.TotalSVCount < 1)
             {
                 return IntPtr.Zero;
             }
+
+            if (x.Parameter.Type != SVMType.EPSILON_SVR && x.Parameter.Type != SVMType.NU_SVR &&
+                x.Parameter.Type != SVMType.ONE_CLASS &&
+                (x.Labels == null || x.Labels.Length < 1 || x.SVCounts == null || x.SVCounts.Length < 1))
+            {
+                return IntPtr.Zero;
+            }
+
 
             svm_model y = new svm_model();
             y.nr_class = x.ClassCount;
@@ -253,13 +263,22 @@ namespace LibSVMsharp
                 Marshal.Copy(x.ProbabilityB, 0, y.probB, x.ProbabilityB.Length);
             }
 
-            // Allocate model.label
-            y.label = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(int)) * x.Labels.Length);
-            Marshal.Copy(x.Labels, 0, y.label, x.Labels.Length);
+            if (x.Parameter.Type != SVMType.EPSILON_SVR && x.Parameter.Type != SVMType.NU_SVR &&
+                x.Parameter.Type != SVMType.ONE_CLASS)
+            {
+                // Allocate model.label
+                y.label = Marshal.AllocHGlobal(Marshal.SizeOf(typeof (int))*x.Labels.Length);
+                Marshal.Copy(x.Labels, 0, y.label, x.Labels.Length);
 
-            // Allocate model.nSV
-            y.nSV = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(int)) * x.SVCounts.Length);
-            Marshal.Copy(x.SVCounts, 0, y.nSV, x.SVCounts.Length);
+                // Allocate model.nSV
+                y.nSV = Marshal.AllocHGlobal(Marshal.SizeOf(typeof (int))*x.SVCounts.Length);
+                Marshal.Copy(x.SVCounts, 0, y.nSV, x.SVCounts.Length);
+            }
+            else
+            {
+                y.label = IntPtr.Zero;
+                y.nSV = IntPtr.Zero;
+            }
 
             // Allocate model.sv_coef
             y.sv_coef = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(IntPtr)) * x.SVCoefs.Count);
