@@ -233,7 +233,6 @@ namespace LibSVMsharp
                 return IntPtr.Zero;
             }
 
-
             svm_model y = new svm_model();
             y.nr_class = x.ClassCount;
             y.l = x.TotalSVCount;
@@ -242,7 +241,6 @@ namespace LibSVMsharp
             // Allocate model.parameter
             IntPtr ptr_param = SVMParameter.Allocate(x.Parameter);
             y.param = (svm_parameter)Marshal.PtrToStructure(ptr_param, typeof(svm_parameter));
-            //fix memory leak  
             SVMParameter.Free(ptr_param);
             
             // Allocate model.rho
