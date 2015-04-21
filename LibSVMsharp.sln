@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibSVMsharp.Examples.Classi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibSVMsharp.Examples.RapidPrediction", "LibSVMsharp.Examples.RapidPrediction\LibSVMsharp.Examples.RapidPrediction.csproj", "{FFDF7EA5-53DA-4DF7-9DD8-E4E7DE2B5AB6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibSVMSharp.Tests", "LibSVMSharp.Tests\LibSVMSharp.Tests.csproj", "{2DE0BD3C-C37B-4B23-9533-2F91C1DD15C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{FFDF7EA5-53DA-4DF7-9DD8-E4E7DE2B5AB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFDF7EA5-53DA-4DF7-9DD8-E4E7DE2B5AB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFDF7EA5-53DA-4DF7-9DD8-E4E7DE2B5AB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DE0BD3C-C37B-4B23-9533-2F91C1DD15C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DE0BD3C-C37B-4B23-9533-2F91C1DD15C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DE0BD3C-C37B-4B23-9533-2F91C1DD15C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DE0BD3C-C37B-4B23-9533-2F91C1DD15C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
