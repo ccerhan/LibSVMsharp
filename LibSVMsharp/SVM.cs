@@ -66,6 +66,16 @@ namespace LibSVMsharp
         /// <returns>SVM model according to the given training data and parameters.</returns>
         public static SVMModel Train(SVMProblem problem, SVMParameter parameter)
         {
+            if (problem == null)
+            {
+                throw new ArgumentNullException("problem");
+            }
+
+            if (parameter == null)
+            {
+                throw new ArgumentNullException("parameter");
+            }
+
             IntPtr ptr_problem = SVMProblem.Allocate(problem);
             IntPtr ptr_parameter = SVMParameter.Allocate(parameter);
 
@@ -87,6 +97,21 @@ namespace LibSVMsharp
         /// <param name="target"></param>
         public static void CrossValidation(SVMProblem problem, SVMParameter parameter, int nFolds, out double[] target)
         {
+            if (problem == null)
+            {
+                throw new ArgumentNullException("problem");
+            }
+
+            if (parameter == null)
+            {
+                throw new ArgumentNullException("parameter");
+            }
+
+            if (nFolds < 2)
+            {
+                throw new ArgumentOutOfRangeException("nFolds");
+            }
+
             IntPtr ptr_target = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(double)) * problem.Length);
             IntPtr ptr_problem = SVMProblem.Allocate(problem);
             IntPtr ptr_parameter = SVMParameter.Allocate(parameter);
@@ -167,6 +192,16 @@ namespace LibSVMsharp
         /// <returns></returns>
         public static double PredictValues(SVMModel model, SVMNode[] x, out double[] values)
         {
+            if (model == null)
+            {
+                throw new ArgumentNullException("model");
+            }
+
+            if (x == null)
+            {
+                throw new ArgumentNullException("x");
+            }
+
             IntPtr ptr_model = SVMModel.Allocate(model);
             double result = PredictValues(ptr_model, x, out values);
             SVMModel.Free(ptr_model);
@@ -182,7 +217,14 @@ namespace LibSVMsharp
         public static double PredictValues(IntPtr ptr_model, SVMNode[] x, out double[] values)
         {
             if (ptr_model == IntPtr.Zero)
+            {
                 throw new ArgumentNullException("ptr_model");
+            }
+
+            if (x == null)
+            {
+                throw new ArgumentNullException("x");
+            }
 
             int classCount = libsvm.svm_get_nr_class(ptr_model);
             int size = (int)(classCount * (classCount - 1) * 0.5);
@@ -213,6 +255,16 @@ namespace LibSVMsharp
         /// For an one-class model, +1 or -1 is returned.</returns>
         public static double Predict(SVMModel model, SVMNode[] x)
         {
+            if (model == null)
+            {
+                throw new ArgumentNullException("model");
+            }
+
+            if (x == null)
+            {
+                throw new ArgumentNullException("x");
+            }
+
             IntPtr ptr_model = SVMModel.Allocate(model);
             double result = Predict(ptr_model, x);
             SVMModel.Free(ptr_model);
@@ -227,7 +279,14 @@ namespace LibSVMsharp
         public static double Predict(IntPtr ptr_model, SVMNode[] x)
         {
             if (ptr_model == IntPtr.Zero)
+            {
                 throw new ArgumentNullException("ptr_model");
+            }
+
+            if (x == null)
+            {
+                throw new ArgumentNullException("x");
+            }
 
             List<SVMNode> nodes = x.Select(a => a.Clone()).ToList();
             nodes.Add(new SVMNode(-1, 0));
@@ -248,6 +307,16 @@ namespace LibSVMsharp
         /// <returns></returns>
         public static double PredictProbability(SVMModel model, SVMNode[] x, out double[] estimations)
         {
+            if (model == null)
+            {
+                throw new ArgumentNullException("model");
+            }
+
+            if (x == null)
+            {
+                throw new ArgumentNullException("x");
+            }
+
             IntPtr ptr_model = SVMModel.Allocate(model);
             double result = PredictProbability(ptr_model, x, out estimations);
             SVMModel.Free(ptr_model);
@@ -263,7 +332,14 @@ namespace LibSVMsharp
         public static double PredictProbability(IntPtr ptr_model, SVMNode[] x, out double[] estimations)
         {
             if (ptr_model == IntPtr.Zero)
+            {
                 throw new ArgumentNullException("ptr_model");
+            }
+
+            if (x == null)
+            {
+                throw new ArgumentNullException("x");
+            }
 
             bool isProbabilityModel = libsvm.svm_check_probability_model(ptr_model);
             if (!isProbabilityModel)
@@ -299,6 +375,16 @@ namespace LibSVMsharp
         /// <returns></returns>
         public static string CheckParameter(SVMProblem problem, SVMParameter parameter)
         {
+            if (problem == null)
+            {
+                throw new ArgumentNullException("problem");
+            }
+
+            if (parameter == null)
+            {
+                throw new ArgumentNullException("parameter");
+            }
+
             IntPtr ptr_problem = SVMProblem.Allocate(problem);
             IntPtr ptr_parameter = SVMParameter.Allocate(parameter);
 
@@ -320,6 +406,11 @@ namespace LibSVMsharp
         /// <returns></returns>
         public static bool CheckProbabilityModel(SVMModel model)
         {
+            if (model == null)
+            {
+                throw new ArgumentNullException("model");
+            }
+
             IntPtr ptr_model = SVMModel.Allocate(model);
             bool success = libsvm.svm_check_probability_model(ptr_model);
             SVMModel.Free(ptr_model);
