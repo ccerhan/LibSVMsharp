@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace LibSVMSharp.Tests
 {
     [TestClass]
-    public class SVMProblemTests
+    public class TestSVMNode
     {
         [TestMethod]
         public void TestMethod1()

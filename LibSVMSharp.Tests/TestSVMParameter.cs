@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace LibSVMSharp.Tests.Helpers
+namespace LibSVMSharp.Tests
 {
     [TestClass]
-    public class SVMNodeHelperTests
+    public class TestSVMParameter
     {
         [TestMethod]
         public void TestMethod1()

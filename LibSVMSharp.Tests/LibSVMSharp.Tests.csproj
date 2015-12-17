@@ -50,16 +50,17 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Extensions\SVMProblemExtensionsTests.cs" />
-    <Compile Include="Helpers\SVMHelperTests.cs" />
-    <Compile Include="Helpers\SVMNodeHelperTests.cs" />
-    <Compile Include="Helpers\SVMProblemHelperTests.cs" />
-    <Compile Include="SVMTests.cs" />
+    <Compile Include="Contants.cs" />
+    <Compile Include="Extensions\TestSVMProblemExtensions.cs" />
+    <Compile Include="Helpers\TestSVMHelper.cs" />
+    <Compile Include="Helpers\TestSVMNodeHelper.cs" />
+    <Compile Include="Helpers\TestSVMProblemHelper.cs" />
+    <Compile Include="TestSVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SVMModelTests.cs" />
-    <Compile Include="SVMNodeTests.cs" />
-    <Compile Include="SVMParameterTests.cs" />
-    <Compile Include="SVMProblemTests.cs" />
+    <Compile Include="TestSVMModel.cs" />
+    <Compile Include="TestSVMNode.cs" />
+    <Compile Include="TestSVMParameter.cs" />
+    <Compile Include="TestSVMProblem.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LibSVMsharp\LibSVMsharp.csproj">
