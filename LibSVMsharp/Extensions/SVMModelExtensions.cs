@@ -22,7 +22,7 @@ namespace LibSVMsharp.Extensions
         }
         public static double PredictValues(this SVMModel model, SVMNode[] x, out double[] values)
         {
-            return PredictValues(model, x, out values);
+            return SVM.PredictValues(model, x, out values);
         }
         public static bool SaveModel(this SVMModel model, string filename)
         {
