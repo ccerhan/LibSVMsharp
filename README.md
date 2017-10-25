@@ -30,7 +30,7 @@ parameter.Gamma = 1;
 
 SVMModel model = SVM.Train(problem, parameter);
 
-double target[] = new double[testProblem.Length];
+double[] target = new double[testProblem.Length];
 for (int i = 0; i < testProblem.Length; i++)
   target[i] = SVM.Predict(model, testProblem.X[i]);
 
@@ -47,7 +47,7 @@ SVMParameter parameter = new SVMParameter();
 
 SVMModel model = problem.Train(parameter);
 
-double target[] = testProblem.Predict(model);
+double[] target = testProblem.Predict(model);
 double accuracy = testProblem.EvaluateClassificationProblem(target);
 ```
 
@@ -60,7 +60,7 @@ SVMParameter parameter = new SVMParameter();
 
 SVMModel model = problem.Train(parameter);
 
-double target[] = testProblem.Predict(model);
+double[] target = testProblem.Predict(model);
 double correlationCoeff;
 double meanSquaredErr = testProblem.EvaluateRegressionProblem(target, out correlationCoeff);
 ```
