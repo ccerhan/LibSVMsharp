@@ -10,8 +10,17 @@ namespace LibSVMsharp.Examples.Classification
 {
     class Program
     {
+        static void PrintFunction(string output)
+        {
+            Console.Write(output);
+        }
+
         static void Main(string[] args)
         {
+            // Set print function for accessing output logs
+            // Please do not call this function more than a couple of times since it may cause memory leak !
+            SVM.SetPrintStringFunction(new SVMPrintFunction(PrintFunction));
+
             // Load the datasets: In this example I use the same datasets for training and testing which is not suggested
             SVMProblem trainingSet = SVMProblemHelper.Load(@"Dataset\wine.txt");
             SVMProblem testSet = SVMProblemHelper.Load(@"Dataset\wine.txt");
