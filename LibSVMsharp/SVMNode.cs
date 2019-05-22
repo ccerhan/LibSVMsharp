@@ -1,9 +1,7 @@
 ﻿using LibSVMsharp.Core;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace LibSVMsharp
 {
@@ -51,7 +49,7 @@ namespace LibSVMsharp
             {
                 svm_node node = (svm_node)Marshal.PtrToStructure(i_ptr_nodes, typeof(svm_node));
                 i_ptr_nodes = IntPtr.Add(i_ptr_nodes, Marshal.SizeOf(typeof(svm_node)));
-                if (node.index > 0)
+                if (node.index >= 0)
                 {
                     nodes.Add(new SVMNode(node.index, node.value));
                 }
