@@ -1,12 +1,11 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 
 namespace LibSVMSharp.Tests.Helpers
 {
-    [TestClass]
+	[TestFixture]
     public class TestSVMProblemHelper
     {
-        [TestMethod]
+        [Test]
         public void TestMethod1()
         {
         }

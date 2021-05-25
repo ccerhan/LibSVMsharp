@@ -1,12 +1,11 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 
 namespace LibSVMSharp.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class TestSVMNode
     {
-        [TestMethod]
+        [Test]
         public void TestMethod1()
         {
         }
