@@ -1,12 +1,11 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 
 namespace LibSVMSharp.Tests.Extensions
 {
-    [TestClass]
+    [TestFixture]
     public class TestSVMProblemExtensions
     {
-        [TestMethod]
+        [Test]
         public void TestMethod1()
         {
         }
